@@ -17,7 +17,6 @@ export default function index() {
   };
   return (
     <>
-      {console.log(data.length)}
       {data.length === 0 ? (
         <NoTickets />
       ) : (

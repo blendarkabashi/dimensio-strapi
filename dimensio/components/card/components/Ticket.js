@@ -1,5 +1,5 @@
 import Chip from 'components/chip';
-
+import Moment from 'react-moment';
 export default function Ticket({ ticket }) {
   return (
     <>
@@ -10,7 +10,9 @@ export default function Ticket({ ticket }) {
         <h1 className="text-lg mt-3 font-medium">{ticket.ticket_name}</h1>
         <p className="text-sm mt-2">{ticket.ticket_description}</p>
       </div>
-      <p className="text-sm">{ticket.createdAt}</p>
+      <p className="text-sm">
+        <Moment format="DD.MM.YYYY">{ticket.createdAt}</Moment>
+      </p>
     </>
   );
 }
