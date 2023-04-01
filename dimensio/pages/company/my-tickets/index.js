@@ -4,17 +4,31 @@ import Card from 'components/card';
 import Button from 'components/button';
 import NoTicketsIcon from 'public/images/no-tickets.svg';
 import types from 'components/card/types';
+import Axios from 'axiosInstance/instance';
+import { useEffect, useState } from 'react';
 
 export default function index() {
+  const [data, setData] = useState([]);
+  useEffect(() => {
+    fetchData();
+  }, []);
+  const fetchData = async () => {
+    Axios.get('tickets').then((response) => setData(response.data.data));
+  };
   return (
     <>
-      {testTickets.length === 0 ? (
+      {console.log(data.length)}
+      {data.length === 0 ? (
         <NoTickets />
       ) : (
         <Layout title="My tickets">
           <div className="grid grid-cols-4 gap-5">
-            {testTickets.map((ticket) => (
-              <Card key={ticket.title} ticket={ticket} type={types.TICKET} />
+            {data?.map((ticket) => (
+              <Card
+                key={ticket.id}
+                ticket={ticket.attributes}
+                type={types.TICKET}
+              />
             ))}
           </div>
         </Layout>
@@ -33,61 +47,61 @@ const NoTickets = () => {
   );
 };
 
-const testTickets = [
-  {
-    title: 'Ticket 1',
-    content:
-      'Lorem ipsum dolor consectetur sir do adipiscing elit, sed do eiusmod tempor incididunt ut',
-    date: '12.02.2022',
-    matches: 3,
-  },
-  {
-    title: 'Ticket 12',
-    content:
-      'Lorem ipsum dolor consectetur sir do adipiscing elit, sed do eiusmod tempor incididunt ut',
-    date: '12.02.2022',
-    matches: 2,
-  },
-  {
-    title: 'Ticket 3',
-    content:
-      'Lorem ipsum dolor consectetur sir do adipiscing elit, sed do eiusmod tempor incididunt ut',
-    date: '12.02.2022',
-    matches: 0,
-  },
-  {
-    title: 'Ticket 4',
-    content:
-      'Lorem ipsum dolor consectetur sir do adipiscing elit, sed do eiusmod tempor incididunt ut',
-    date: '12.02.2022',
-    matches: 1,
-  },
-  {
-    title: 'Ticket 5',
-    content:
-      'Lorem ipsum dolor consectetur sir do adipiscing elit, sed do eiusmod tempor incididunt ut',
-    date: '12.02.2022',
-    matches: 0,
-  },
-  {
-    title: 'Ticket 6',
-    content:
-      'Lorem ipsum dolor consectetur sir do adipiscing elit, sed do eiusmod tempor incididunt ut',
-    date: '12.02.2022',
-    matches: 5,
-  },
-  {
-    title: 'Ticket 7',
-    content:
-      'Lorem ipsum dolor consectetur sir do adipiscing elit, sed do eiusmod tempor incididunt ut',
-    date: '12.02.2022',
-    matches: 2,
-  },
-  {
-    title: 'Ticket 8',
-    content:
-      'Lorem ipsum dolor consectetur sir do adipiscing elit, sed do eiusmod tempor incididunt ut',
-    date: '12.02.2022',
-    matches: 0,
-  },
-];
+// const data = [
+//   {
+//     title: 'Ticket 1',
+//     content:
+//       'Lorem ipsum dolor consectetur sir do adipiscing elit, sed do eiusmod tempor incididunt ut',
+//     date: '12.02.2022',
+//     matches: 3,
+//   },
+//   {
+//     title: 'Ticket 12',
+//     content:
+//       'Lorem ipsum dolor consectetur sir do adipiscing elit, sed do eiusmod tempor incididunt ut',
+//     date: '12.02.2022',
+//     matches: 2,
+//   },
+//   {
+//     title: 'Ticket 3',
+//     content:
+//       'Lorem ipsum dolor consectetur sir do adipiscing elit, sed do eiusmod tempor incididunt ut',
+//     date: '12.02.2022',
+//     matches: 0,
+//   },
+//   {
+//     title: 'Ticket 4',
+//     content:
+//       'Lorem ipsum dolor consectetur sir do adipiscing elit, sed do eiusmod tempor incididunt ut',
+//     date: '12.02.2022',
+//     matches: 1,
+//   },
+//   {
+//     title: 'Ticket 5',
+//     content:
+//       'Lorem ipsum dolor consectetur sir do adipiscing elit, sed do eiusmod tempor incididunt ut',
+//     date: '12.02.2022',
+//     matches: 0,
+//   },
+//   {
+//     title: 'Ticket 6',
+//     content:
+//       'Lorem ipsum dolor consectetur sir do adipiscing elit, sed do eiusmod tempor incididunt ut',
+//     date: '12.02.2022',
+//     matches: 5,
+//   },
+//   {
+//     title: 'Ticket 7',
+//     content:
+//       'Lorem ipsum dolor consectetur sir do adipiscing elit, sed do eiusmod tempor incididunt ut',
+//     date: '12.02.2022',
+//     matches: 2,
+//   },
+//   {
+//     title: 'Ticket 8',
+//     content:
+//       'Lorem ipsum dolor consectetur sir do adipiscing elit, sed do eiusmod tempor incididunt ut',
+//     date: '12.02.2022',
+//     matches: 0,
+//   },
+// ];
