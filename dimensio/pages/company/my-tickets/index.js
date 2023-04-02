@@ -7,20 +7,17 @@ import types from 'components/card/types';
 import Axios from 'axiosInstance/instance';
 import { useEffect, useState } from 'react';
 
-export default function index({ data }) {
+export default function index({ tickets }) {
   // const [data, setData] = useState([]);
-  // useEffect(() => {
-  //     Axios.get('tickets').then((response) => setData(response.data.data));
-  // }, []);
-
+  console.log(tickets);
   return (
     <>
-      {data.length === 0 ? (
+      {tickets.length === 0 ? (
         <NoTickets />
       ) : (
         <Layout title="My tickets">
           <div className="grid grid-cols-4 gap-5">
-            {data?.map((ticket) => (
+            {tickets.map((ticket) => (
               <Card
                 id={ticket.id}
                 key={ticket.id}
@@ -46,10 +43,10 @@ const NoTickets = () => {
 };
 
 export const getServerSideProps = async () => {
-  const response = await Axios.get(`tickets?populate=*`);
+  const response = await Axios.get(`tickets?populate=deep`);
   return {
     props: {
-      data: response.data.data,
+      tickets: response.data.data,
     },
   };
 };

@@ -18,11 +18,6 @@
     "description": {
       "type": "text"
     },
-    "matches": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "admin::user"
-    },
     "position": {
       "type": "string"
     },
@@ -31,6 +26,12 @@
     },
     "work_type": {
       "type": "string"
+    },
+    "matches": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "plugin::users-permissions.user",
+      "mappedBy": "ticket"
     }
   }
 }
