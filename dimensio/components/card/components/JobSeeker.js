@@ -4,6 +4,10 @@ import types from '../types';
 import { strapi_base_url } from 'global/variables';
 
 export default function JobSeeker({ jobSeeker }) {
+  let profilePictureUrl = jobSeeker.profile_picture.data
+    ? strapi_base_url + jobSeeker.profile_picture.data.attributes.url
+    : strapi_base_url + jobSeeker.profile_picture.url;
+
   return (
     <>
       <div className="flex flex-row">
@@ -15,7 +19,7 @@ export default function JobSeeker({ jobSeeker }) {
         /> */}
         <img
           className="inline-block rounded-full mr-4 h-12 w-12"
-          src={strapi_base_url + jobSeeker.profile_picture.data.attributes.url}
+          src={profilePictureUrl}
           alt=""
         />
         <div className="flex flex-col">
