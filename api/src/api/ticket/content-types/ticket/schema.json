@@ -12,14 +12,25 @@
   },
   "pluginOptions": {},
   "attributes": {
-    "ticket_name": {
+    "name": {
       "type": "string"
     },
-    "ticket_description": {
+    "description": {
       "type": "text"
     },
     "matches": {
-      "type": "integer"
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "admin::user"
+    },
+    "position": {
+      "type": "string"
+    },
+    "days_of_work": {
+      "type": "string"
+    },
+    "work_type": {
+      "type": "string"
     }
   }
 }
