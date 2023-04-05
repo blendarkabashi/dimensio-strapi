@@ -2,12 +2,16 @@
 import '/styles/globals.scss';
 import Head from 'next/head';
 import Header from 'components/header';
+import store from '../store';
+import { Provider, useSelector } from 'react-redux';
 
 export default function MyApp({ Component, pageProps }) {
   return (
     <>
-      <Header />
-      <Component {...pageProps} />
+      <Provider store={store}>
+        <Header />
+        <Component {...pageProps} />
+      </Provider>
     </>
   );
 }

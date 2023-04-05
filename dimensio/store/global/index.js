@@ -1,9 +1,13 @@
 const { createSlice } = require('@reduxjs/toolkit');
 
+let isUserAuthenticated = false;
+if (typeof window !== 'undefined') {
+  isUserAuthenticated = localStorage.getItem('user') ? true : false;
+}
 const global = createSlice({
   name: 'global',
   initialState: {
-    isAuthenticated: false,
+    isAuthenticated: isUserAuthenticated,
     user: [],
   },
   reducers: {

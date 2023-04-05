@@ -9,6 +9,7 @@ import { useEffect, useState } from 'react';
 
 export default function index({ tickets }) {
   // const [data, setData] = useState([]);
+  useEffect(() => {}, []);
   console.log(tickets);
   return (
     <>

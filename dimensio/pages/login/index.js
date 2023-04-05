@@ -4,12 +4,26 @@ import logo from 'public/images/logo.svg';
 import Image from 'next/image';
 import Input from 'components/input';
 import Button from 'components/button';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useFormik } from 'formik';
 import ButtonSlider from 'components/buttonSlider';
 import Axios from 'axiosInstance/instance';
+import { setIsAuthenticated, setUser } from 'store/global';
+import { useDispatch, useSelector } from 'react-redux';
+import { useRouter } from 'next/router';
+
 const index = () => {
+  const router = useRouter();
+  const dispatch = useDispatch();
   const [activeButton, setActiveButton] = useState(1);
+
+  const isAuthenticated = useSelector((state) => state.global.isAuthenticated);
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      router.push('/');
+    }
+  }, [isAuthenticated]);
 
   const buttons = [
     {
@@ -30,14 +44,19 @@ const index = () => {
       Axios.post('auth/local', {
         identifier: username,
         password: password,
-      }).then((response) => console.log(response.data));
+      }).then((response) => {
+        localStorage.setItem('jwt', response.data.jwt);
+        localStorage.setItem('user', JSON.stringify(response.data));
+        dispatch(setIsAuthenticated(true));
+        dispatch(setUser(response.data));
+      });
     },
   });
   return (
     <div className="my-[80px]">
       <div className="container">
         <div className="w-full flex flex-col items-center justify-center">
-          <Image src={logo}></Image>
+          <Image src={logo} alt="test" />
         </div>
         <div className="flex items-center justify-between">
           <div className="max-w-[400px]">
@@ -83,6 +102,7 @@ const index = () => {
           <div className=" h-[550px] w-[400px]">
             <Image
               className="h-full w-full"
+              alt="alt"
               src={activeButton == 1 ? hireIllustration : lookingIllustration}
             />
           </div>

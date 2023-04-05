@@ -7,5 +7,3 @@ export default configureStore({
   },
   devTools: true,
 });
-
-export const globalReducer = globalReducer.actions;
