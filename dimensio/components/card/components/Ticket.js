@@ -11,9 +11,9 @@ export default function Ticket({ ticket }) {
         <h1 className="text-lg mt-3 font-medium">{ticket.name}</h1>
         <p className="text-sm mt-2">{ticket.description}</p>
       </div>
-      <p className="text-sm">
+      <div className="text-sm">
         <Moment format="DD.MM.YYYY">{ticket.createdAt}</Moment>
-      </p>
+      </div>
     </>
   );
 }

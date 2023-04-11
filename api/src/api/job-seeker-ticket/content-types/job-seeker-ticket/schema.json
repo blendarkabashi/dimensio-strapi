@@ -1,0 +1,56 @@
+{
+  "kind": "collectionType",
+  "collectionName": "job_seeker_tickets",
+  "info": {
+    "singularName": "job-seeker-ticket",
+    "pluralName": "job-seeker-tickets",
+    "displayName": "JobSeekerTicket",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "position": {
+      "type": "string"
+    },
+    "short_description": {
+      "type": "text"
+    },
+    "tech_stack": {
+      "type": "text"
+    },
+    "location": {
+      "type": "string"
+    },
+    "days_of_work": {
+      "type": "text"
+    },
+    "days_of_paid_vacation": {
+      "type": "text"
+    },
+    "company_size": {
+      "type": "enumeration",
+      "enum": [
+        "Small (0-20 workers)",
+        "Medium (20-40 workers)",
+        "Big (40+ workers)"
+      ]
+    },
+    "company_revenue": {
+      "type": "decimal"
+    },
+    "company_industry": {
+      "type": "enumeration",
+      "enum": [
+        "Effiecient Energy",
+        "Tech",
+        "Crypto"
+      ]
+    },
+    "desired_salary": {
+      "type": "decimal"
+    }
+  }
+}

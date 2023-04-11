@@ -4,6 +4,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import AddIcon from '@mui/icons-material/Add';
 import { items } from './list';
+import ProfileDropdown from './profileDropdown';
 
 export default function Header() {
   const router = useRouter();
@@ -28,7 +29,7 @@ export default function Header() {
               <AddIcon className="mr-2" />
               New ticket
             </Link>
-            <div className="rounded-full border-[1px] border-blue w-[45px] h-[45px]"></div>
+            <ProfileDropdown />
           </div>
           <div className="justify-between text-base items-center w-full lg:flex lg:w-auto lg:order-1">
             <ul className="flex flex-col mt-4 lg:flex-row lg:space-x-[40px] lg:mt-0">

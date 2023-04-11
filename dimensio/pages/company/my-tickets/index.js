@@ -6,11 +6,10 @@ import NoTicketsIcon from 'public/images/no-tickets.svg';
 import types from 'components/card/types';
 import Axios from 'axiosInstance/instance';
 import { useEffect, useState } from 'react';
+import withAuth from 'hoc/withAuth';
 
-export default function index({ tickets }) {
+const index = ({ tickets }) => {
   // const [data, setData] = useState([]);
-  useEffect(() => {}, []);
-  console.log(tickets);
   return (
     <>
       {tickets.length === 0 ? (
@@ -31,7 +30,7 @@ export default function index({ tickets }) {
       )}
     </>
   );
-}
+};
 
 const NoTickets = () => {
   return (
@@ -52,6 +51,7 @@ export const getServerSideProps = async () => {
   };
 };
 
+export default withAuth(index);
 // const data = [
 //   {
 //     title: 'Ticket 1',

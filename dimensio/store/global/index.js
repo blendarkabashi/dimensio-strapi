@@ -17,6 +17,13 @@ const global = createSlice({
     setUser(state, action) {
       state.user = action.payload;
     },
+    logout(state) {
+      state.isAuthenticated = false;
+      state.user = [];
+      if (typeof window !== 'undefined') {
+        localStorage.removeItem('user');
+      }
+    },
   },
 });
 

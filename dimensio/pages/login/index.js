@@ -21,7 +21,7 @@ const index = () => {
 
   useEffect(() => {
     if (isAuthenticated) {
-      router.push('/');
+      router.push('/company/my-tickets');
     }
   }, [isAuthenticated]);
 
@@ -113,3 +113,5 @@ const index = () => {
 };
 
 export default index;
+
+index.isPublic = true;
