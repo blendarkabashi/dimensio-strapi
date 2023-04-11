@@ -1,11 +1,25 @@
-import { NextRequest } from 'next/server';
-import { useSelector } from 'react-redux';
-export function middleware(request) {
-  if (request.nextUrl.pathname.startsWith('/company')) {
-    // This logic is only applied to /about
-  }
+import { NextResponse } from 'next/server';
 
-  if (request.nextUrl.pathname.startsWith('/dashboard')) {
-    // This logic is only applied to /dashboard
+export const config = {
+  matcher: [
+    /*
+     * Match all request paths except for the ones starting with:
+     * - api (API routes)
+     * - _next/static (static files)
+     * - _next/image (image optimization files)
+     * - favicon.ico (favicon file)
+     */
+    '/((?!api|_next/static|_next/image|favicon.ico|login).*)',
+  ],
+};
+
+export function middleware(req) {
+  let jwt = req.cookies.get('jwt')?.value;
+  console.log('here');
+  if (!jwt) {
+    const url = req.nextUrl.clone();
+    url.pathname = '/login';
+    return NextResponse.redirect(url, req.url);
   }
+  return NextResponse.next();
 }

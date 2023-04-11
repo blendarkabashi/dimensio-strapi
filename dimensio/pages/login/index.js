@@ -11,11 +11,13 @@ import Axios from 'axiosInstance/instance';
 import { setIsAuthenticated, setUser } from 'store/global';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/router';
+import { useCookies } from 'react-cookie';
 
 const index = () => {
   const router = useRouter();
   const dispatch = useDispatch();
   const [activeButton, setActiveButton] = useState(1);
+  const [setCookie] = useCookies(['cookie-policy-consent']);
 
   const isAuthenticated = useSelector((state) => state.global.isAuthenticated);
 
@@ -46,6 +48,7 @@ const index = () => {
         password: password,
       }).then((response) => {
         localStorage.setItem('jwt', response.data.jwt);
+        setCookie('jwt', response.data.jwt);
         localStorage.setItem('user', JSON.stringify(response.data));
         dispatch(setIsAuthenticated(true));
         dispatch(setUser(response.data));
